@@ -46,6 +46,7 @@ exports.resetPasswordToken = async(req,res) => {
 exports.resetPassword = async(req,res) => {
     try{
         const {password,confirmPassword,token} = req.body;
+        console.log("REq.body : ",req.body);
         console.log("reset pass : ",password,confirmPassword,token);
 
         if(confirmPassword !==  password ){
@@ -55,7 +56,7 @@ exports.resetPassword = async(req,res) => {
             })
         }
 
-        const userDetails = await User.findOneAndUpdate({token:token});
+        const userDetails = await User.findOne({token:token});
 
         if(!userDetails){
             return res.status(401).json({

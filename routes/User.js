@@ -16,8 +16,8 @@ router.post('/sendotp',sendOTP);
 router.post('/changepassword',auth,changePassword);
 
 // route mapping (PASSWORD RESET)
-router.post('/resetpasswordtoken',resetPasswordToken);
-router.post('/resetpassword',resetPassword);
+router.post('/reset-password-token',resetPasswordToken);
+router.post('/reset-password',resetPassword);
 
 // export
 module.exports = router;

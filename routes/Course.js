@@ -3,7 +3,7 @@ const router = express.Router();
 
 // CONTROLLERS -----------------------------------------------------------
 // Course Conrollers
-const {createCourse,getAllCourses,getCourseDetails} = require('../controllers/Course');
+const {createCourse,getAllCourses,getCourseDetails,editCourse,getFullCourseDetails,getInstructorCourses,deleteCourse} = require('../controllers/Course');
 // Category Conrollers
 const {createCategory,showAllCategories,categoryPageDetails} = require('../controllers/Category');
 // Section Conrollers
@@ -19,8 +19,12 @@ const {auth,isAdmin,isInstructor,isStudent} = require('../middlewares/authWare')
 // MAPPING----------------------------------------------------------------------
 // INSTRUCTOR ----ONLY BY INSTRUCTORS------
 router.post('/createCourse',auth,isInstructor,createCourse);
+router.post("/editCourse", auth, isInstructor, editCourse)
 router.get('/getAllCourses',getAllCourses);
 router.post('/getCourseDetails',getCourseDetails);
+router.post('/getFullCourseDetails',auth,getFullCourseDetails)
+router.get('/getInstructorCourses',auth,isInstructor,getInstructorCourses);
+router.delete('/deleteCourse',deleteCourse);
 
 router.post('/createSection',auth,isInstructor,createSection);
 router.post('/updateSection',auth,isInstructor,updateSection);
